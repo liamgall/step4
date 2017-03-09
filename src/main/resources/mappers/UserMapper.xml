@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybbatis-3-mapper.dtd">
+
+<mapper namespace="com.example.step4.DAO.UserDAO">
+
+	<insert id="insertDAO" parameterType="User">
+		INSERT INTO
+			user(email, postcode5, address, details, extra_info, phonenumber, password, file)
+		VALUES
+			(#{email}, #{postcode5}, #{address}, #{details}, #{extra_info}, #{phoneNumber}, #{password}, #{filePath})
+	</insert>
+	
+	<select id="selectAllDAO" parameterType="String">
+		SELECT
+			*
+		FROM
+			user	
+	</select>
+</mapper>
