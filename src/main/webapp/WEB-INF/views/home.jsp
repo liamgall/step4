@@ -23,7 +23,7 @@
 				<tr>
 					<td align="left" width="20%">Email:</td>
 					<td align="left" width="20%"><form:input path="email"
-							value="${eMail}" size="30" style="background-color:#EBEBE4;" /></td>
+							value="${eMail}" size="30" /></td>
 					<td align="left"><form:errors path="email" cssClass="error" /></td>
 				</tr>
 				<tr>
