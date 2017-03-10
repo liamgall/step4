@@ -25,4 +25,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM
 			user
 	</select>
+	<select id="findDAO" parameterType="String" resultType="User">
+		SELECT
+			*
+		FROM
+			user
+		WHERE
+			email = #{email}
+	</select>
 </mapper>

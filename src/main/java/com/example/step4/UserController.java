@@ -1,17 +1,20 @@
 package com.example.step4;
 
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.step4.DAO.UserDAO;
 import com.example.step4.Util.Encrypter;
 import com.example.step4.VO.UserVO;
+
 
 /**
  * Handles requests for the application home page.
@@ -30,7 +33,22 @@ public class UserController {
 		UserDAO dao = sqlSession.getMapper(UserDAO.class);
 		
 		dao.insertDAO(user);
-		return "JoinSuccess";
+		return "registerDone";
+	}
+	
+	
+	@RequestMapping(value= "/selectUser", method= RequestMethod.POST)
+	@ResponseBody
+	public UserVO selectUser(@RequestBody String email){
+
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		UserVO user = new UserVO();
+		System.out.println(email);
+		
+		user = dao.findDAO(email);
+		System.out.println(user);
+		
+		return user;
 	}
 	
 }

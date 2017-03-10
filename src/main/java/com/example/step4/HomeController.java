@@ -34,16 +34,16 @@ public class HomeController {
 		UserVO user = new UserVO();
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("home");
-		mav.addObject("allUser", dao.countAllDAO(user));
+		mav.addObject("userCount", dao.countAllDAO(user));
 		return mav;
 	}
 	
-	@RequestMapping(value="/register", method = RequestMethod.GET)
+	@RequestMapping(value="/register", method = RequestMethod.POST)
 	public ModelAndView register(){
 		
 		ModelAndView mav = new ModelAndView();
 		UserVO user = new UserVO();
-		mav.setViewName("home");
+		mav.setViewName("register");
 		mav.addObject("userVO", user);
 		return mav;
 	}

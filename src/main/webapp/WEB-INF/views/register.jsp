@@ -28,8 +28,7 @@
 				</tr>
 				<tr>
 					<td align="left" width="20%">이름:</td>
-					<td align="left" width="20%"><form:input path="name"
-							size="30" /></td>
+					<td align="left" width="20%"><form:input path="name" size="30" /></td>
 					<td align="left"><form:errors path="email" cssClass="error" /></td>
 				</tr>
 				<tr>
@@ -88,6 +87,7 @@
 			</tr>
 		</table>
 	</div>
+	
 </body>
 
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
