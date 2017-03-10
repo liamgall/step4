@@ -10,11 +10,13 @@ public class UserVO {
     private String email;
 
 	@NotEmpty
-	@Size(min=13, max=14)
+	@Size(min=13, max=13)
 	private String phoneNumber;
 	
 	@NotEmpty
-	@Size(min=8, max=16)
+	private String name;
+	
+	@NotEmpty
     private String password;
 	
 	@NotEmpty
@@ -114,6 +116,14 @@ public class UserVO {
 
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
  

@@ -8,15 +8,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="insertDAO" parameterType="User">
 		INSERT INTO
-			user(email, postcode5, address, details, extra_info, phonenumber, password, file)
+			user(email, name, phonenumber, postcode5, address, details, password)
 		VALUES
-			(#{email}, #{postcode5}, #{address}, #{details}, #{extra_info}, #{phoneNumber}, #{password}, #{filePath})
+			(#{email}, #{name}, #{phoneNumber}, #{postcode5}, #{address}, #{details}, #{password})
 	</insert>
 	
-	<select id="selectAllDAO" parameterType="String">
+	<select id="selectAllDAO" parameterType="User" resultType="hashmap">
 		SELECT
-			*
+			email, name, phonenumber
 		FROM
-			user	
+			user
+	</select>
+	<select id="countAllDAO" parameterType="User" resultType="Integer">
+		SELECT
+			count(*)
+		FROM
+			user
 	</select>
 </mapper>

@@ -9,4 +9,5 @@
 		<typeAlias alias="User" type="com.example.step4.VO.UserVO" />
 	</typeAliases>
 
+
 </configuration>
