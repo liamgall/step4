@@ -47,10 +47,8 @@
 			</div>
 			<div class="modal-body">
 				<table id="userSpec">
-					<tr>정보
+					<tr>
 					</tr>
-					<tr></tr>
-					<tr></tr>
 				</table>
 			</div>
 		</div>
@@ -82,11 +80,34 @@
 				});
 			});
 
+	$('body')
+			.on(
+					'click',
+					'#changePhoneNumber',
+					function() {
+						console
+								.log($(this)[0].parentNode.parentNode.parentNode.childNodes[0].childNodes[1].innerText);
+						var prom = prompt('전화번호 입력 (하이픈 포함) ex)010-1111-1111');
+						$
+								.ajax({
+									url : '/changePhoneNumber',
+									data : {
+										phoneNumber : prom,
+										email : $(this)[0].parentNode.parentNode.parentNode.childNodes[0].childNodes[1].innerText
+									},
+									type: 'post',
+									success : function(response) {
+										console.log(response);
+										
+									}
+								});
+
+					})
 	$('#myTable')
 			.click(
 					function(e) {
-						console.log($(this));
-						$.ajax({
+						var $first = $
+								.ajax({
 									url : '/selectUser',
 									type : 'post',
 									contentType : 'text/plain',
@@ -108,12 +129,15 @@
 												+ response.details
 												+ "</td></tr><tr><td>비밀번호</td><td><button id='changePwd'>수정</button></td></tr>"
 										$('#userSpec > tbody:last').html(text);
-										setTimeout(function() {
-											$('#myModal').css('display',
-													'block');
-										}, 2000);
+										
 									}
 								});
+						
+						$.when($.first).done(function(){
+								$('#myModal').css('display', 'block');
+						})
+						
+						
 					});
 
 	$('#close').click(function() {

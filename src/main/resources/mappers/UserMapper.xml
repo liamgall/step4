@@ -33,4 +33,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE
 			email = #{email}
 	</select>
+	
+	<update id="changePhoneDAO" parameterType="Map">
+		UPDATE
+			user
+		SET
+			phonenumber = #{phoneNumber}
+		WHERE
+			email = #{email}
+	
+	</update>
 </mapper>
