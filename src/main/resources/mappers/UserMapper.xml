@@ -13,11 +13,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			(#{email}, #{name}, #{phoneNumber}, #{postcode5}, #{address}, #{details}, #{password})
 	</insert>
 	
-	<select id="selectAllDAO" parameterType="User" resultType="hashmap">
+	<select id="selectAllDAO" parameterType="Integer" resultType="hashmap">
 		SELECT
 			email, name, phonenumber
 		FROM
 			user
+		LIMIT
+			#{start}, 10
 	</select>
 	<select id="countAllDAO" parameterType="User" resultType="Integer">
 		SELECT

@@ -48,16 +48,16 @@ public class HomeController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/getList", method = RequestMethod.GET)
+	@RequestMapping(value="/getList", params={"start"}, method = RequestMethod.GET)
 	@ResponseBody
-	public JSONPObject jsonp(@RequestParam("callback")String callback){
+	public JSONPObject jsonp(@RequestParam("callback")String callback, @RequestParam(value="start")int start){
+		System.out.println(start);
+		
 		UserDAO dao = sqlSession.getMapper(UserDAO.class);
 		dao = sqlSession.getMapper(UserDAO.class);
-		UserVO user = new UserVO();
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		dao.selectAllDAO(user);
-		map.put("data", dao.selectAllDAO(user));
+		map.put("data", dao.selectAllDAO(start));
 		return new JSONPObject(callback, map);
 	}
 }

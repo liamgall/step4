@@ -9,7 +9,7 @@ import com.example.step4.VO.UserVO;
 public interface UserDAO {
 
 	public void insertDAO(UserVO user);
-	public List<HashMap<String, Object>> selectAllDAO(UserVO user);
+	public List<HashMap<String, Object>> selectAllDAO(int start);
 	public int countAllDAO(UserVO user);
 	public UserVO findDAO(String email);
 	public void changePhoneDAO(Map<String, String> map);

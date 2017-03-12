@@ -26,6 +26,11 @@
 
 
 		</table>
+		<table id="pages">
+			<tr id="pagesTr">
+
+			</tr>
+		</table>
 		<table>
 			<tr>
 				<td align="left">
@@ -59,27 +64,62 @@
 
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script>
+	var start;
+	var end;
+	var text="";
 	$(document).ready(
 			function() {
+				start = 0;
+				end = 10;
 				var userCount = '${userCount}';
-				console.log(userCount);
-				$.ajax({
-					url : "/getList",
+				text= "";
+				for (var i = 1; i <= (userCount / 10) + 1; ++i) {
+					$('#pagesTr').append("<td id='page'>" + i + "</td>");
+				}
+				var $list = $.ajax({
+					url : "/getList?start=" + start + "&end=" + end,
 					dataType : "jsonp",
 					jsonp : "callback",
 					success : function(response) {
 						response.data.forEach(function(value, index) {
 							index++;
-							var text = "<tr><td>" + index + "</td>" + "<td>"
+							text += "<tr><td>" + index + "</td>" + "<td>"
 									+ value.email + "</td>" + "<td>"
 									+ value.name + "</td>" + "<td>"
 									+ value.phonenumber + "</td></tr>";
-							$('#myTable > tbody:last').append(text);
-						})
+						});
 					}
 				});
-			});
 
+				$list.success(function() {
+					console.log(text);
+					$('#myTable > tbody:last').html(text);
+				})
+			});
+	$('body').on('click', '#page', function(){
+		start = ($(this)[0].innerText - 1)*10;
+		text="";
+		var $list = $.ajax({
+			url : "/getList?start=" + start,
+			dataType : "jsonp",
+			jsonp : "callback",
+			success : function(response) {
+				response.data.forEach(function(value, index) {
+					index++;
+					index+=start;
+					text += "<tr><td>" + index + "</td>" + "<td>"
+							+ value.email + "</td>" + "<td>"
+							+ value.name + "</td>" + "<td>"
+							+ value.phonenumber + "</td></tr>";
+				})
+			}
+		});
+		
+		$list.success(function(){
+			$('#myTable').html(text);
+		})
+		
+	})
 	$('body')
 			.on(
 					'click',
@@ -95,10 +135,10 @@
 										phoneNumber : prom,
 										email : $(this)[0].parentNode.parentNode.parentNode.childNodes[0].childNodes[1].innerText
 									},
-									type: 'post',
+									type : 'post',
 									success : function(response) {
 										console.log(response);
-										
+
 									}
 								});
 
@@ -129,15 +169,14 @@
 												+ response.details
 												+ "</td></tr><tr><td>비밀번호</td><td><button id='changePwd'>수정</button></td></tr>"
 										$('#userSpec > tbody:last').html(text);
-										
+
 									}
 								});
-						
-						$.when($.first).done(function(){
-								$('#myModal').css('display', 'block');
+
+						$.when($.first).done(function() {
+							$('#myModal').css('display', 'block');
 						})
-						
-						
+
 					});
 
 	$('#close').click(function() {
