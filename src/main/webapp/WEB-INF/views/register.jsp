@@ -75,7 +75,7 @@
 				</tr>
 				<tr>
 					<td>이미지 첨부 :</td>
-					<td><form:input type="file" path="uploadFile" /></td>
+					<td><form:input type="file" path="uploadFiles" name="files[]" multiple="multiple"/></td>
 				</tr>
 				<tr>
 					<td align="center"><input type="submit" id="submit" value="제출" /></td>
@@ -83,7 +83,6 @@
 			</form:form>
 
 			<tr>
-
 			</tr>
 		</table>
 	</div>

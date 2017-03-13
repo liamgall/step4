@@ -6,12 +6,14 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.step4.DAO.FileDAO;
 import com.example.step4.DAO.UserDAO;
 import com.example.step4.VO.UserVO;
 import com.fasterxml.jackson.databind.util.JSONPObject;
@@ -51,7 +53,6 @@ public class HomeController {
 	@RequestMapping(value="/getList", params={"start"}, method = RequestMethod.GET)
 	@ResponseBody
 	public JSONPObject jsonp(@RequestParam("callback")String callback, @RequestParam(value="start")int start){
-		System.out.println(start);
 		
 		UserDAO dao = sqlSession.getMapper(UserDAO.class);
 		dao = sqlSession.getMapper(UserDAO.class);
@@ -59,5 +60,14 @@ public class HomeController {
 		
 		map.put("data", dao.selectAllDAO(start));
 		return new JSONPObject(callback, map);
+	}
+	
+	@RequestMapping(value="/getImages", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> getImages(@RequestBody String email){
+		FileDAO fdao = sqlSession.getMapper(FileDAO.class);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("data", fdao.selectAllDAO(email));
+		return map;
 	}
 }

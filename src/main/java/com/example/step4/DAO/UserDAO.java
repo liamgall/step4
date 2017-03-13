@@ -13,4 +13,5 @@ public interface UserDAO {
 	public int countAllDAO(UserVO user);
 	public UserVO findDAO(String email);
 	public void changePhoneDAO(Map<String, String> map);
+	public void changePasswordDAO(Map<String, String> map);
 }

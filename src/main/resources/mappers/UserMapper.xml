@@ -18,6 +18,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			email, name, phonenumber
 		FROM
 			user
+		ORDER BY
+			email
 		LIMIT
 			#{start}, 10
 	</select>
@@ -44,5 +46,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE
 			email = #{email}
 	
+	</update>
+	<update id="changePasswordDAO" parameterType="Map">
+		UPDATE
+			user
+		SET
+			password = #{password}
+		WHERE
+			email = #{email}
 	</update>
 </mapper>

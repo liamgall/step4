@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class UserVO {
 	@NotEmpty
+	@Size(min=10, max=254)
     private String email;
 
 	@NotEmpty
@@ -14,27 +15,28 @@ public class UserVO {
 	private String phoneNumber;
 	
 	@NotEmpty
+	@Size(min=2, max=4)
 	private String name;
 	
 	@NotEmpty
+	@Size(max=255)
     private String password;
 	
 	@NotEmpty
 	private String postcode5;
 	
 	@NotEmpty
+	@Size(min=5, max=20)
 	private String address;
 	
 	@NotEmpty
+	@Size(min=5, max=20)
 	private String details;
 	
 	@NotEmpty
 	private String extra_info;
-	
-	@NotEmpty
-	private String captcha;
 
-	private MultipartFile uploadFile;
+	private MultipartFile uploadFiles;
 	
 	private String filePath;
 	
@@ -94,20 +96,12 @@ public class UserVO {
 		this.extra_info = extra_info;
 	}
 
-	public String getCaptcha() {
-		return captcha;
+	public MultipartFile getUploadFiles() {
+		return uploadFiles;
 	}
 
-	public void setCaptcha(String captcha) {
-		this.captcha = captcha;
-	}
-
-	public MultipartFile getUploadFile() {
-		return uploadFile;
-	}
-
-	public void setUploadFile(MultipartFile uploadFile) {
-		this.uploadFile = uploadFile;
+	public void setUploadFiles(MultipartFile uploadFiles) {
+		this.uploadFiles = uploadFiles;
 	}
 
 	public String getFilePath() {
