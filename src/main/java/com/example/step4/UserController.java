@@ -103,13 +103,14 @@ public class UserController {
 		String encPwd = encrypter.getEncryptedPassword(password, email);
 		
 		Map<String, String> map = new HashMap<String, String>();
+		
 		System.out.println(encPwd);
 		
 		map.put("password", encPwd);
 		map.put("email", email);
 		
 		dao.changePasswordDAO(map);
-		return password;
+		return encPwd;
 		
 	}
 	

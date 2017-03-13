@@ -10,7 +10,7 @@ public interface UserDAO {
 
 	public void insertDAO(UserVO user);
 	public List<HashMap<String, Object>> selectAllDAO(int start);
-	public int countAllDAO(UserVO user);
+	public int countAllDAO();
 	public UserVO findDAO(String email);
 	public void changePhoneDAO(Map<String, String> map);
 	public void changePasswordDAO(Map<String, String> map);

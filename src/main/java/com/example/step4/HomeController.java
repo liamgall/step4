@@ -30,12 +30,10 @@ public class HomeController {
 	/* 메인화면 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home() {
-
+		
 		UserDAO dao = sqlSession.getMapper(UserDAO.class);
-		UserVO user = new UserVO();
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("home");
-		mav.addObject("userCount", dao.countAllDAO(user));
+		ModelAndView mav = new ModelAndView("home");
+		mav.addObject("userCount", dao.countAllDAO());
 		return mav;
 	}
 	
@@ -43,9 +41,8 @@ public class HomeController {
 	@RequestMapping(value="/register", method = RequestMethod.POST)
 	public ModelAndView register(){
 		
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView("register");
 		UserVO user = new UserVO();
-		mav.setViewName("register");
 		mav.addObject("userVO", user);
 		return mav;
 	}
@@ -56,13 +53,12 @@ public class HomeController {
 	public JSONPObject jsonp(@RequestParam("callback")String callback, @RequestParam(value="start")int start){
 		
 		UserDAO dao = sqlSession.getMapper(UserDAO.class);
-		dao = sqlSession.getMapper(UserDAO.class);
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("data", dao.selectAllDAO(start));
 		return new JSONPObject(callback, map);
 	}
-	
+	/* 파일 테이블에서 이미지 불러오기 */
 	@RequestMapping(value="/getImages", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> getImages(@RequestBody String email){

@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		LIMIT
 			#{start}, 10
 	</select>
-	<select id="countAllDAO" parameterType="User" resultType="Integer">
+	<select id="countAllDAO" resultType="Integer">
 		SELECT
 			count(*)
 		FROM
