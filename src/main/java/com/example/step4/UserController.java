@@ -85,7 +85,6 @@ public class UserController {
 	@ResponseBody
 	public String changePassword(@RequestParam(value="password")String password, @RequestParam(value="email")String email){
 		UserDAO dao = sqlSession.getMapper(UserDAO.class);
-		System.out.println(email);
 		Map<String, String> map = new HashMap<String, String>();
 		Encrypter encrypter = new Encrypter();
 		String encPwd = encrypter.getEncryptedPassword(password, email);
