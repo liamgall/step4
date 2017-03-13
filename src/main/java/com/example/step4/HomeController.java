@@ -26,9 +26,8 @@ public class HomeController {
 
 	@Autowired
 	private SqlSession sqlSession;
-
 	
-	
+	/* 메인화면 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home() {
 
@@ -40,6 +39,7 @@ public class HomeController {
 		return mav;
 	}
 	
+	/* 회원가입 화면 */
 	@RequestMapping(value="/register", method = RequestMethod.POST)
 	public ModelAndView register(){
 		
@@ -50,6 +50,7 @@ public class HomeController {
 		return mav;
 	}
 	
+	/* 가입자 리스트 10개 단위로 불러오기 */
 	@RequestMapping(value="/getList", params={"start"}, method = RequestMethod.GET)
 	@ResponseBody
 	public JSONPObject jsonp(@RequestParam("callback")String callback, @RequestParam(value="start")int start){
